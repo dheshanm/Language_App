@@ -20,6 +20,44 @@
         <item name="colorPrimaryDark">@color/primary_dark_color</item>
     </style>
 
+    <style name="ListTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/category_numbers</item>
+        <item name="colorPrimaryDark">@color/primary_dark_color</item>
+        <item name="android:colorPrimary">@color/primary_color</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark_color</item>
+        <item name="android:windowBackground">@color/tan_background</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="colorAccent">@color/primary_color</item>
+    </style>
+
+    <style name="ColorsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#8BC34A</item>
+        <item name="colorPrimaryDark">@color/category_colors</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="colorAccent">#CDDC39</item>
+    </style>
+
+    <style name="NumbersTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryDark">@color/category_numbers</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="colorAccent">#BB86FC</item>
+    </style>
+
+    <style name="PhrasesTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">@color/category_phrases</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="colorAccent">#448AFF</item>
+    </style>
+
+    <style name="FamilyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">@color/category_family</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="colorAccent">#536DFE</item>
+    </style>
+
     <!-- Style for a category of vocabulary words -->
     <style name="CategoryStyle">
         <item name="android:layout_width">match_parent</item>

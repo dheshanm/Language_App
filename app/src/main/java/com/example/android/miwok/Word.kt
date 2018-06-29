@@ -6,12 +6,20 @@ package com.example.android.miwok
  */
 
 class Word
-    (defaultTranslation: String, miwokTranslation: String) {
+    (defaultTranslation: String, miwokTranslation: String, audioResourceId : Int) {
     /** Default translation for the word  */
     private var mDefaultTranslation: String = defaultTranslation
 
     /** Miwok translation for the word  */
     private var mMiwokTranslation: String = miwokTranslation
+
+    private var mAudioResourceId = audioResourceId
+
+    private var mImageResourceId : Int = 0
+
+    constructor(defaultTranslation: String, miwokTranslation: String, resourceId : Int, audioResourceId: Int) : this(defaultTranslation, miwokTranslation, audioResourceId){
+        mImageResourceId = resourceId
+    }
 
     /**
      * Get the default translation of the word.
@@ -25,5 +33,13 @@ class Word
      */
     fun getMiwokTranslation(): String {
         return mMiwokTranslation
+    }
+
+    fun getResourceId() : Int {
+        return mImageResourceId
+    }
+
+    fun getAudioResourceId() : Int {
+        return mAudioResourceId
     }
 }

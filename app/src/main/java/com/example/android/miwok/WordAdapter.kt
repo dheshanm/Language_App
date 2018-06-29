@@ -6,6 +6,7 @@ import android.widget.TextView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 
 /**
  * [WordAdapter] is an [ArrayAdapter] that can provide the layout for each list item
@@ -37,6 +38,9 @@ class WordAdapter
         // Find the TextView in the list_item.xml layout with the ID default_text_view.
         val defaultTextView = listItemView.findViewById<TextView>(R.id.default_text_view)
         defaultTextView.text = currentWord.getDefaultTranslation()
+
+        val placeHolderImageView = listItemView.findViewById<ImageView>(R.id.imageHolder)
+        placeHolderImageView.setImageResource(currentWord.getResourceId())
 
         // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
         // the ListView.
