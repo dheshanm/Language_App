@@ -1,19 +1,23 @@
 package com.example.android.miwok
 
+import android.content.Context
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 
 class ColorsActivity : AppCompatActivity() {
 
+    private lateinit var mMediaPlayer : MediaPlayer
+    private lateinit var mAudioManager : AudioManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_colors)
 
-        var mMediaPlayer : MediaPlayer
+        mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         // Create a list of words
         val words = ArrayList<Word>()
@@ -43,10 +47,21 @@ class ColorsActivity : AppCompatActivity() {
             // Get the {@link Word} object at the given position the user clicked on
             // Create and setup the {@link MediaPlayer} for the audio resource associated
             // with the current word
+
             mMediaPlayer = MediaPlayer.create(this@ColorsActivity, words[position].getAudioResourceId())
 
             // Start the audio file
             mMediaPlayer.start()
+            mMediaPlayer.setOnCompletionListener {
+                mMediaPlayer.release()
+            }
+
         }
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mMediaPlayer.release()
     }
 }

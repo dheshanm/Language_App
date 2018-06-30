@@ -1,5 +1,7 @@
 package com.example.android.miwok
 
+import android.content.Context
+import android.media.AudioManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -11,11 +13,14 @@ import android.widget.AdapterView
 
 class PhrasesActivity : AppCompatActivity() {
 
+    private lateinit var mMediaPlayer : MediaPlayer
+    private lateinit var mAudioManager : AudioManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phrases)
 
-        var mMediaPlayer : MediaPlayer
+        mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         // Create a list of words
         val words = ArrayList<Word>()
@@ -55,7 +60,15 @@ class PhrasesActivity : AppCompatActivity() {
 
                 // Start the audio file
                 mMediaPlayer.start()
+                mMediaPlayer.setOnCompletionListener {
+                    mMediaPlayer.release()
+                }
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mMediaPlayer.release()
     }
 }
