@@ -83,6 +83,7 @@ class FamilyActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        mMediaPlayer.release()
+        if(this::mMediaPlayer.isInitialized)
+            mMediaPlayer.release()
     }
 }
