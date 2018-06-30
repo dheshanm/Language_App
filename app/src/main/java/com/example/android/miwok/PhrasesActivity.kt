@@ -20,6 +20,8 @@ class PhrasesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phrases)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         // Create a list of words

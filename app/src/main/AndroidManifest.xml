@@ -31,15 +31,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".NumbersActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/NumbersTheme"
             android:label="@string/category_numbers"/>
         <activity android:name=".ColorsActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/ColorsTheme"
             android:label="@string/category_colors"/>
         <activity android:name=".PhrasesActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/PhrasesTheme"
             android:label="@string/category_phrases"/>
         <activity android:name=".FamilyActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/FamilyTheme"
             android:label="@string/category_family" />
     </application>

@@ -18,6 +18,8 @@ class NumbersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_numbers)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         val words : ArrayList<Word> = ArrayList()

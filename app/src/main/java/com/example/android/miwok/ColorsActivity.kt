@@ -17,6 +17,8 @@ class ColorsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_colors)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         // Create a list of words
