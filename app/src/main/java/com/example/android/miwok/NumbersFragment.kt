@@ -1,29 +1,25 @@
 package com.example.android.miwok
 
-import android.content.Context
-import android.media.AudioManager
-import android.support.v7.app.AppCompatActivity
+
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
-import android.media.MediaPlayer
 
 
-class NumbersActivity : AppCompatActivity() {
-
+class NumbersFragment : Fragment() {
     private lateinit var mMediaPlayer : MediaPlayer
-    private lateinit var mAudioManager : AudioManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_numbers)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_base, container, false)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-
-        val words : ArrayList<Word> = ArrayList()
-
+        val words = ArrayList<Word>()
         words.add(Word("One", "lutti", R.drawable.number_one, R.raw.number_one))
         words.add(Word("Two", "otiiko", R.drawable.number_two, R.raw.number_two))
         words.add(Word("Three", "tolookosu", R.drawable.number_three, R.raw.number_three))
@@ -35,23 +31,35 @@ class NumbersActivity : AppCompatActivity() {
         words.add(Word("Nine", "wo’e", R.drawable.number_nine, R.raw.number_nine))
         words.add(Word("Ten", "na’aacha", R.drawable.number_ten, R.raw.number_ten))
 
-        val itemsAdapter = WordAdapter(this, words)
-        val listView = findViewById<ListView>(R.id.list)
-        listView.adapter = itemsAdapter
+        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
+        // adapter knows how to create list items for each item in the list.
+        val adapter = WordAdapter(activity!!.applicationContext, words)
+
+        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
+        // There should be a {@link ListView} with the view ID called list, which is declared in the
+        // word_list.xml layout file.
+        val listView = view.findViewById<ListView>(R.id.list)
+
+        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
+        // {@link ListView} will display list items for each {@link Word} in the list.
+        listView.adapter = adapter
 
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             // Get the {@link Word} object at the given position the user clicked on
             // Create and setup the {@link MediaPlayer} for the audio resource associated
             // with the current word
 
-            mMediaPlayer = MediaPlayer.create(this@NumbersActivity, words[position].getAudioResourceId())
+            mMediaPlayer = MediaPlayer.create(activity, words[position].getAudioResourceId())
 
             // Start the audio file
             mMediaPlayer.start()
             mMediaPlayer.setOnCompletionListener {
                 mMediaPlayer.release()
             }
+
         }
+
+        return view
     }
 
     override fun onStop() {
