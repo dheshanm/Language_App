@@ -35,6 +35,8 @@ class WordAdapter
         val miwokTextView = listItemView!!.findViewById<TextView>(R.id.miwok_text_view)
         miwokTextView.text = currentWord!!.getMiwokTranslation()
 
+        listItemView.findViewById<ImageView>(R.id.imageView).setImageResource(R.drawable.ic_play_circle_outline_24px)
+
         // Find the TextView in the list_item.xml layout with the ID default_text_view.
         val defaultTextView = listItemView.findViewById<TextView>(R.id.default_text_view)
         defaultTextView.text = currentWord.getDefaultTranslation()
