@@ -17,6 +17,8 @@ package com.example.android.miwok
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 
@@ -28,28 +30,15 @@ class MainActivity : AppCompatActivity() {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main)
 
-        val numbers = findViewById<TextView>(R.id.numbers)
-        numbers.setOnClickListener{
-            val intent = Intent(this, NumbersActivity::class.java)
-            startActivity(intent)
-        }
+        // Find the view pager that will allow the user to swipe between fragments
+        val pager : ViewPager = findViewById(R.id.viewpager)
+        val tabBar : TabLayout = findViewById(R.id.sliding_tabs)
 
-        val colors = findViewById<TextView>(R.id.colors)
-        colors.setOnClickListener{
-            val intent = Intent(this, ColorsActivity::class.java)
-            startActivity(intent)
-        }
+        // Create an adapter that knows which fragment should be shown on each page
+        val pagerAdapter = ListFragmentPagerAdapter( supportFragmentManager )
 
-        val family = findViewById<TextView>(R.id.family)
-        family.setOnClickListener{
-            val intent = Intent(this, FamilyActivity::class.java)
-            startActivity(intent)
-        }
-
-        val phrases = findViewById<TextView>(R.id.phrases)
-        phrases.setOnClickListener{
-            val intent = Intent(this, PhrasesActivity::class.java)
-            startActivity(intent)
-        }
+        // Set the adapter onto the view pager
+        pager.adapter = pagerAdapter
+        tabBar.setupWithViewPager(pager)
     }
 }
