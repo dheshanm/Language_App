@@ -1,4 +1,4 @@
-Miwok App
+Miwok App  [![Build Status](https://travis-ci.org/L4TTiCe/Language_App.svg?branch=master)](https://travis-ci.org/L4TTiCe/Language_App)
 ===================================
 
 This app displays lists of vocabulary words for the user to learn the Miwok language.
